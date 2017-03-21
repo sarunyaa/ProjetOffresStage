@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,8 +25,8 @@ public void sautehntifier(Event event)throws Exception{
 	String login=textLogin.getText().trim();
 	String motdepasse=textMDP.getText().trim();	
 	
-	Connect con;
-	PreparedStatement state ;
+	Connection con = Connect.ConnectDB();
+	PreparedStatement state =null;
 	ResultSet rs;
 	state =con.prepareStatement("SELECT * FROM utilisateur WHERE login=? and motdepasse=?");
     state.setString(1,login); 

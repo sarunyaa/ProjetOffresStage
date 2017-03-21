@@ -1,14 +1,15 @@
 package controller;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Connect;
 
 public class EtudiantController {
+	
 	public boolean sinscrir(int idEtudiant,String nom,String prenom, Date dateDeNaissance, String niveauEtude, String adresseMail)throws ClassNotFoundException, SQLException{
-		 Connect connection ;
+		 Connection connection = Connect.ConnectDB() ;
 		 PreparedStatement state,state1;
         ResultSet res;
 		 boolean flag =false ;
@@ -33,8 +34,8 @@ public class EtudiantController {
 				if (rs!=0){
 			        flag=true;
            }
-		return flag ;
-       }    
+		
+       }  return flag ;  
 
 }
 }
