@@ -5,11 +5,36 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+
 
 public class EtudiantController {
 	
-	public boolean sinscrir(int idEtudiant,String nom,String prenom, Date dateDeNaissance, String niveauEtude, String adresseMail)throws ClassNotFoundException, SQLException{
-		 Connection connection = Connect.ConnectDB() ;
+	@FXML
+	private TextField textNom;
+	
+	@FXML
+	private TextField textPrenom;
+	
+	@FXML
+	private TextField textDdn;
+	
+	@FXML
+	private TextField textNiv;
+	
+	@FXML 
+	private TextField textMail;
+	
+	@FXML
+	private Button buttonOk = new Button();
+	
+	
+	Connection connection = Connect.ConnectDB() ;
+	
+	public boolean sinscrire(int idEtudiant,String nom,String prenom, Date dateDeNaissance, String niveauEtude, String adresseMail)throws ClassNotFoundException, SQLException{
+		 
 		 PreparedStatement state,state1;
         ResultSet res;
 		 boolean flag =false ;
