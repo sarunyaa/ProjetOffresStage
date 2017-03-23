@@ -30,13 +30,13 @@ public class Main extends Application {
 			Parent root = null;
 			
 			try {
-				root = FXMLLoader.load(getClass().getClassLoader().getResource("view/Inscription.fxml"));
+				root = FXMLLoader.load(getClass().getClassLoader().getResource("view/Connexion.fxml"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			primaryStage.setScene(new Scene(root, 800,600));
+			primaryStage.setScene(new Scene(root, 600,400));
 			primaryStage.show();
 		
 		

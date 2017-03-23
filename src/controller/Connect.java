@@ -14,7 +14,7 @@ public class Connect {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost/gestion_stages","root","");
-			System.out.println("création de connexion");
+			System.out.println("Connexion avec BDD ok");
 			return con;
 		}catch(ClassNotFoundException | SQLException e){
 			JOptionPane.showMessageDialog(null, e);

@@ -7,23 +7,23 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url('file:////Users/chloeramananjo/Desktop/SCHOOL/POO/Images_projet/Inscription.png');" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField layoutX="79.0" layoutY="127.0" prefHeight="18.0" prefWidth="321.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;">
+      <TextField fx:id="textNom" layoutX="79.0" layoutY="127.0" prefHeight="18.0" prefWidth="321.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;">
          <font>
             <Font name="Georgia" size="14.0" />
          </font></TextField>
-      <TextField layoutX="139.0" layoutY="169.0" prefHeight="27.0" prefWidth="312.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;">
+      <TextField fx:id="textPrenom" layoutX="139.0" layoutY="169.0" prefHeight="27.0" prefWidth="312.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;">
          <font>
             <Font name="Georgia" size="14.0" />
          </font></TextField>
-      <TextField layoutX="199.0" layoutY="209.0" prefHeight="27.0" prefWidth="303.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;">
+      <TextField fx:id="textDdn" layoutX="199.0" layoutY="209.0" prefHeight="27.0" prefWidth="303.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;">
          <font>
             <Font name="Georgia" size="14.0" />
          </font></TextField>
-      <TextField layoutX="328.0" layoutY="249.0" prefHeight="27.0" prefWidth="223.0" style="-fx-background-color: tranparent; -fx-text-inner-color: white;">
+      <TextField fx:id="textNiv" layoutX="328.0" layoutY="249.0" prefHeight="27.0" prefWidth="223.0" style="-fx-background-color: tranparent; -fx-text-inner-color: white;">
          <font>
             <Font name="Georgia" size="14.0" />
          </font></TextField>
-      <TextField layoutX="336.0" layoutY="289.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;">
+      <TextField fx:id="textMail" layoutX="336.0" layoutY="289.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;">
          <font>
             <Font name="Georgia" size="14.0" />
          </font></TextField>

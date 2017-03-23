@@ -55,10 +55,10 @@ public class ControlUtilisateur {
 						if (rs != null){
 							while(rs.next()){
 								//renvoyer la fenetre utilisateur 
-								System.out.println(login);
+								System.out.println(login + "connecté");
 							}
 						}else{
-							System.out.println("t'es bête ou quoi ?!");
+							System.out.println("Utilisateur inconnu");
 						}
 					} catch(SQLException e){
 						e.printStackTrace();
