@@ -1,11 +1,14 @@
 package model;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Entreprise extends Utilisateur{
 	
-	private int idEntreprise;
-	public String raisonSociale;
-	public int telEntreprise;
-	public String secteurActivité;
+	private SimpleIntegerProperty idEntreprise;
+	public SimpleStringProperty raisonSociale;
+	public SimpleIntegerProperty telEntreprise;
+	public SimpleStringProperty secteurActivité;
 	
 	/* Constructeur */
 	public Entreprise(int idUtilisateur, String login, String motdepasse, String adresseRue, String adresseVille,

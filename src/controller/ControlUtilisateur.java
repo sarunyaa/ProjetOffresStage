@@ -1,20 +1,32 @@
 package controller;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import model.Utilisateur;
 
-public class ControlUtilisateur {
+public class ControlUtilisateur  {
+	
+	
 
+	//Ouverture connexion BD
+	Connection con = Connect.ConnectDB();
+
+	//Authentification 
 	@FXML
 	private TextField textLogin;
 
@@ -24,9 +36,10 @@ public class ControlUtilisateur {
 	@FXML
 	private Button buttonConnex = new Button();
 	
-	Connection con = Connect.ConnectDB();
+	
+	
 
-
+	
 	@FXML
 	public void sauthentifier(Event event)throws Exception{
 		//public void sauthentifier(String login, String motdepasse) throws ClassNotFoundException, SQLException{
@@ -71,4 +84,7 @@ public class ControlUtilisateur {
 		});
 
 	}
+
+
+	
 }

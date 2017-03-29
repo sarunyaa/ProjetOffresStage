@@ -1,14 +1,17 @@
 package model;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javafx.beans.property.SimpleStringProperty;
 
 public class Etudiant extends Utilisateur{
 	
 	private int idEtudiant;
-	public String nom;
-	public String prenom;
-	private Date dateDeNaissance; 
-	private String niveauEtude;
-	private String adresseMail;
+	public SimpleStringProperty nom;
+	public SimpleStringProperty prenom;
+	private SimpleDateFormat dateDeNaissance; 
+	private SimpleStringProperty niveauEtude;
+	private SimpleStringProperty adresseMail;
 	
 	/* Constructeur */
 	public Etudiant(int idUtilisateur, String login, String motdepasse, String adresseRue, String adresseVille,
