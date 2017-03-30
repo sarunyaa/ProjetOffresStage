@@ -21,15 +21,46 @@ public class AccueilController {
 
 	@FXML
 	private Button buttonInscription = new Button();
-	
+
 	@FXML
-    private Hyperlink adminLink = new Hyperlink("Se connecter en tant qu'administrateur");
-	
-	
+	private Hyperlink adminLink = new Hyperlink("Se connecter en tant qu'administrateur");
+
+
 	//Hypertext pour se connecter en tant qu'admin
 	@FXML
 	public void adminHyperlink(ActionEvent event){
 		System.out.println("hyperlink admin cliqué");
+
+		Stage primaryStage = new Stage();
+
+		try {
+			// Localisation du fichier FXML.
+			final URL url = getClass().getClassLoader().getResource("view/ConnexionAdmin.fxml");
+
+			// Création du loader.
+			final FXMLLoader fxmlLoader = new FXMLLoader(url);
+
+			// Chargement du FXML.
+			final AnchorPane root = (AnchorPane) fxmlLoader.load();
+
+			// Création de la scène.
+			final Scene scene = new Scene(root, 800, 600);
+			primaryStage.setScene(scene);
+		} catch (IOException ex) {
+			System.err.println("Erreur au chargement: " + ex);
+		}
+		primaryStage.setTitle("Accueil");
+		primaryStage.show();
+		primaryStage.setResizable(false);
+		((Node) event.getSource()).getScene().getWindow().hide();
+	}
+
+
+	//Bouton connexion -> page d'authentification
+	@FXML
+	public void clicConnexion(ActionEvent event){
+
+		System.out.println("bouton connexion cliqué");
 
 		Stage primaryStage = new Stage();
 
@@ -44,79 +75,49 @@ public class AccueilController {
 			final AnchorPane root = (AnchorPane) fxmlLoader.load();
 
 			// Création de la scène.
-			final Scene scene = new Scene(root, 600, 400);
+			final Scene scene = new Scene(root, 800, 600);
 			primaryStage.setScene(scene);
 		} catch (IOException ex) {
 			System.err.println("Erreur au chargement: " + ex);
 		}
-		primaryStage.setTitle("Accueil");
+		primaryStage.setTitle("Se connecter");
 		primaryStage.show();
 		primaryStage.setResizable(false);
 		((Node) event.getSource()).getScene().getWindow().hide();
 	}
-	
 
-	//Bouton connexion -> page d'authentification
-	@FXML
-	public void clicConnexion(ActionEvent event){
 
-					System.out.println("bouton connexion cliqué");
-
-					Stage primaryStage = new Stage();
-
-					try {
-						// Localisation du fichier FXML.
-						final URL url = getClass().getClassLoader().getResource("view/Connexion.fxml");
-
-						// Création du loader.
-						final FXMLLoader fxmlLoader = new FXMLLoader(url);
-
-						// Chargement du FXML.
-						final AnchorPane root = (AnchorPane) fxmlLoader.load();
-
-						// Création de la scène.
-						final Scene scene = new Scene(root, 600, 400);
-						primaryStage.setScene(scene);
-					} catch (IOException ex) {
-						System.err.println("Erreur au chargement: " + ex);
-					}
-					primaryStage.setTitle("Accueil");
-					primaryStage.show();
-					primaryStage.setResizable(false);
-					((Node) event.getSource()).getScene().getWindow().hide();
-				}
-	
 	//Bouton inscription -> page d'inscription
 	@FXML
 	public void clicInscription(ActionEvent event){
 
-					System.out.println("bouton inscription cliqué");
+		System.out.println("bouton inscription cliqué");
 
-					Stage primaryStage = new Stage();
+		Stage primaryStage = new Stage();
 
-					try {
-						// Localisation du fichier FXML.
-						final URL url = getClass().getClassLoader().getResource("view/Inscription.fxml");
+		try {
+			// Localisation du fichier FXML.
+			final URL url1 = getClass().getClassLoader().getResource("view/Inscription.fxml");
 
-						// Création du loader.
-						final FXMLLoader fxmlLoader = new FXMLLoader(url);
+			// Création du loader.
+			final FXMLLoader fxmlLoader = new FXMLLoader(url1);
 
-						// Chargement du FXML.
-						final AnchorPane root = (AnchorPane) fxmlLoader.load();
+			// Chargement du FXML.
+			final AnchorPane root = (AnchorPane) fxmlLoader.load();
 
-						// Création de la scène.
-						final Scene scene = new Scene(root, 800, 600);
-						primaryStage.setScene(scene);
-					} catch (IOException ex) {
-						System.err.println("Erreur au chargement: " + ex);
-					}
-					primaryStage.setTitle("Accueil");
-					primaryStage.show();
-					primaryStage.setResizable(false);
-					((Node) event.getSource()).getScene().getWindow().hide();
-
-				}
-			
+			// Création de la scène.
+			final Scene scene = new Scene(root, 800, 600);
+			primaryStage.setScene(scene);
+		} catch (IOException ex) {
+			System.err.println("Erreur au chargement: " + ex);
+		}
+		primaryStage.setTitle("Création d'un profil : Etudiant");
+		primaryStage.show();
+		primaryStage.setResizable(false);
+		((Node) event.getSource()).getScene().getWindow().hide();
 
 	}
+
+
+}
 
