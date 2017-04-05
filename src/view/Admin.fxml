@@ -107,9 +107,12 @@
                                  <center>
                                     <Button fx:id="ButtonBrowse" mnemonicParsing="false" onAction="#changerPhotoProfil" text="Browse ..." BorderPane.alignment="CENTER" />
                                  </center>
+<<<<<<< HEAD
                                  <bottom>
                                     <ListView fx:id="path" prefHeight="36.0" prefWidth="205.0" BorderPane.alignment="CENTER" />
                                  </bottom>
+=======
+>>>>>>> sarunyaa/master
                               </BorderPane>
                            </content></TitledPane>
                       <TitledPane animated="false" text="Gérer">

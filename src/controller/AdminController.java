@@ -18,8 +18,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+<<<<<<< HEAD
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+=======
+>>>>>>> sarunyaa/master
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -50,6 +53,7 @@ public class AdminController {
 	private Button ButtonBrowse;
 
 	@FXML
+<<<<<<< HEAD
 	private ListView path;
 	
 	@FXML
@@ -60,6 +64,17 @@ public class AdminController {
 	@FXML
 	void consulterOffres(ActionEvent event) {
 		//System.out.println("bouton os cliqué");
+=======
+	private ImageView imageP;
+	
+	@FXML
+	private Button ButtonBrowse;
+	
+    //clic sur bouton consulter -> page d'offres de stages
+    @FXML
+    void consulterOffres(ActionEvent event) {
+    	//System.out.println("bouton os cliqué");
+>>>>>>> sarunyaa/master
 
 		Stage primaryStage = new Stage();
 
@@ -111,6 +126,63 @@ public class AdminController {
 		primaryStage.setResizable(false);
 		((Node) event.getSource()).getScene().getWindow().hide();
 	}
+    
+  //clique sur "change my profil photo" -> fichier de séléction photo
+  	public void changerPhotoProfil(ActionEvent event) {
+  		FileChooser fileChooser = new FileChooser();
+
+  		//Set extension filter
+  		FileChooser.ExtensionFilter extFilter = 
+  				new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG", "jpg files (*.jpg)", "*.jpg",
+  						"PNG files (*.PNG)", "*.PNG","png files (*.png)", "*.png",
+  						"JPEG files (*.JPEG)", "*.JPEG","jpeg files (*.jpeg)", "*.jpeg");
+  		//		FileChooser.ExtensionFilter extFilterjpg = 
+  		//				new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+  		//		FileChooser.ExtensionFilter extFilterPNG = 
+  		//				new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+  		//		FileChooser.ExtensionFilter extFilterpng = 
+  		//				new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+  		//		new FileChooser.ExtensionFilter("jpeg files (*.jpeg)", "*.jpeg");
+
+  		fileChooser.getExtensionFilters()
+  		.addAll(extFilter);
+
+
+  		//Show open file dialog
+  		File file = fileChooser.showOpenDialog(null);
+
+  		try {
+  			BufferedImage bufferedImage = ImageIO.read(file);
+  			Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+  			imageP.setImage(image);
+  		} catch (IOException ex) {
+  			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+  		}
+
+  		if (file != null){
+  			//listview.getItems().add(selectedFile.getAbsolutePath());
+  			System.out.println("browse");
+  		}
+  		else{
+  			System.out.println("File isn't valid");
+  		}
+
+  		Connection con = Connect.ConnectDB();
+  		((Connect) con).filen();
+  		String vpath = ((Connect) con).getp();
+  		try {
+  			if (vpath == null) {
+
+  			} else {
+  				System.out.println("llol");
+
+
+  			} 
+  		}catch (Exception e) {
+  			e.printStackTrace();
+  		}
+
+  	}
 
 	//clique sur "change my profil photo" -> fichier de séléction photo
 	public void changerPhotoProfil(ActionEvent event) {
