@@ -3,16 +3,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
 
+import com.mysql.jdbc.StringUtils;
+
+import dao.EtudiantDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,6 +25,9 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.converter.LocalDateStringConverter;
+import model.Etudiant;
+import model.Utilisateur;
 
 
 public class EtudiantController implements Initializable {
@@ -41,8 +44,9 @@ public class EtudiantController implements Initializable {
 	@FXML
 	private DatePicker textDdn;
 
-	@FXML
-	private TextField textNiv;
+
+	//	@FXML
+	//	private TextField textNiv;
 
 	@FXML 
 	private TextField textMail;
@@ -62,8 +66,9 @@ public class EtudiantController implements Initializable {
 	private Button buttonOk = new Button();
 
 	//Inscription
+	@FXML
 	ObservableList<String> niveauList = FXCollections
-			.observableArrayList("Choisir niveau","BAC+2", "BAC+3", "BAC+4", "BAC+5");
+	.observableArrayList("Choisir niveau","BAC+2", "BAC+3", "BAC+4", "BAC+5");
 
 	@FXML
 	private ComboBox<String> choixNiveau = new ComboBox();
@@ -103,6 +108,21 @@ public class EtudiantController implements Initializable {
 
 	}
 
+
+	//final DatePicker datePicker = new DatePicker();
+	@FXML
+	LocalDate date(ActionEvent event) {
+
+		LocalDate date = textDdn.getValue();
+		System.out.println(date);
+		return date;
+	}
+
+
+
+
+
+
 	@FXML
 	void sinscrire(ActionEvent event) {
 
@@ -111,114 +131,24 @@ public class EtudiantController implements Initializable {
 		//recupération des données entrées par l'utilisateur 
 		String nom=textNom.getText();
 		String prenom=textPrenom.getText();
+		//		java.util.Date dateDeNaissance = 
+		//				java.util.Date.from(textDdn.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+		//		java.sql.Date sqlDate = new java.sql.Date(dateDeNaissance.getTime());
+		//pst.setDate(5, sqlDate);
 		LocalDate dateDeNaissance=textDdn.getValue();
-		String niveauEtude=textNiv.getText();
+		String niveauEtude=choixNiveau.getPromptText();
 		String adresseMail=textMail.getText();
 		String login=textLogin.getText();
 		String motdepasse=textMDP.getText();
 
+		Etudiant et = new Etudiant(nom, prenom, null, niveauEtude, adresseMail, login, motdepasse);
+		Utilisateur u = new Utilisateur();
+		EtudiantDao dao = new EtudiantDao();
+		dao.ajouter(u, et);
 
-		PreparedStatement state,state1;
-		ResultSet res;
-		boolean flag =false ;
-
-		try{
-			String req1 = "SELECT `idEtudiant`,`nom`,`prenom`, `dateDeNaissance`,`niveauEtude`,`adresseMail` FROM Etudiant WHERE nom=? AND prenom=? "
-					+ "AND dateDeNaissance=? AND niveauEtude=? AND  adresseMail=?";
-
-			state1 = connection.prepareStatement(req1);
-
-			//state1.setInt(1,idEtudiant);
-			state1.setString(2,nom);
-			state1.setString(3,prenom);
-			res=state1.executeQuery();	
-
-			if (res != null){
-				flag=true;
-
-				while(res.next()){ //tant qu'il y a qqchose dans la table
-					state = connection.prepareStatement("insert into Etudiant (idEtudiant,nom,prenom,dateDeNaissance,niveauEtude,adresseMail)values(?,?,?,?,?,?)");
-					//state.setInt(1,idEtudiant);
-					state.setString(1,nom);
-					state.setString(2,prenom);
-					//state.setValue(3,dateDeNaissance);
-					state.setString(4,niveauEtude);
-					state.setString(5,adresseMail);
-					//rajouter login + mdp ? a recuperer de l'utilisateur
-
-					int rs= state.executeUpdate();
-
-					System.out.println("Etudiant ajouté");
-
-				}
-			} else System.out.println("Etudiant pas ajouté");
-
-		} catch(SQLException e){
-			e.printStackTrace();
-		}
+		System.out.println(nom + " ajouté dans la base, sous le login de " + login);
 
 	}
-
-	/*	public void sinscrire(int idEtudiant,String nom,String prenom, Date dateDeNaissance, String niveauEtude, String adresseMail)throws ClassNotFoundException, SQLException{
-
-
-		 buttonOk.setOnAction(new EventHandler<ActionEvent>(){
-
-			@Override
-			public void handle(ActionEvent event) {
-				if(event.getSource()==buttonOk){
-					System.out.println("bouton OK cliqué");	
-
-					String nom=textNom.getText();
-					String prenom=textPrenom.getText();
-					String ddn=textDdn.getText();
-					String niveau=textNiv.getText();
-					String mail=textMail.getText();
-					String login=textLogin.getText();
-					String motdepasse=textMDP.getText();
-
-
-					 PreparedStatement state,state1;
-			         ResultSet res;
-					 boolean flag =false ;
-
-					 try{
-					 String req1 = "SELECT `idEtudiant`,`nom`,`prenom`, `dateDeNaissance`,`niveauEtude`,`adresseMail` FROM Etudiant WHERE nom=? AND prenom=? "
-					 		+ "AND dateDeNaissance=? AND niveauEtude=? AND  adresseMail=?";
-						state1 = connection.prepareStatement(req1);
-
-						state1.setInt(1,idEtudiant);
-						 state1.setString(2,nom);
-						 state1.setString(3,prenom);
-						 res=state1.executeQuery();	
-
-						 if (res != null){
-						        flag=true;
-
-					      while(res.next()){
-								state = connection.prepareStatement("insert into Etudiant (idEtudiant,nom,prenom,dateDeNaissance,niveauEtude,adresseMail)values(?,?,?,?,?,?)");
-								state.setInt(1,idEtudiant);
-								state.setString(1,nom);
-								state.setString(2,prenom);
-								state.setDate(3,dateDeNaissance);
-								state.setString(4,niveauEtude);
-								state.setString(5,adresseMail);
-								//rajouter login + mdp ? a recuperer de l'utilisateur
-
-								int rs= state.executeUpdate();
-
-					System.out.println("Etudiant ajouté");
-
-					      }
-				       } else System.out.println("Etudiant pas ajouté");
-
-				       } catch(SQLException e){
-							e.printStackTrace();
-				       }
-				}
-				}  
-
-			}); */
 
 }
 

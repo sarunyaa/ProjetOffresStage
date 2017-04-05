@@ -9,12 +9,15 @@ public class Entreprise extends Utilisateur{
 	public SimpleStringProperty raisonSociale;
 	public SimpleIntegerProperty telEntreprise;
 	public SimpleStringProperty secteurActivité;
+	private String adresseRue;
+	private String adresseVille;
+	private int adresseCodePostal;
 	
 	/* Constructeur */
-	public Entreprise(int idUtilisateur, String login, String motdepasse, String adresseRue, String adresseVille,
+	public Entreprise(String login, String motdepasse, String adresseRue, String adresseVille,
 			int adresseCodePostal) 
 	{
-		super(idUtilisateur, login, motdepasse, adresseRue, adresseVille, adresseCodePostal);
+		super(login, motdepasse);
 		this.raisonSociale = raisonSociale;
 		this.telEntreprise = telEntreprise;
 		this.secteurActivité = secteurActivité;
