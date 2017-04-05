@@ -55,7 +55,7 @@ public class Main extends Application {
 			      final AnchorPane root = (AnchorPane) fxmlLoader.load();
 			      
 			      // Création de la scène.
-			      final Scene scene = new Scene(root, 800, 600);
+			      final Scene scene = new Scene(root);
 			      primaryStage.setScene(scene);
 			    } catch (IOException ex) {
 			      System.err.println("Erreur au chargement: " + ex);

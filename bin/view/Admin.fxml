@@ -97,12 +97,15 @@
                            <content>
                               <BorderPane prefHeight="200.0" prefWidth="200.0">
                                  <top>
-                                    <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                    <ImageView fx:id="imageP" fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../../../../../Desktop/SCHOOL/POO/admin.jpg" />
+                                          <Image url="@file:/Users/sarunyaa/Documents/workspace/ProjetOffresStage/src/images/office_girl.png" />
                                        </image>
                                     </ImageView>
                                  </top>
+                                 <center>
+                                    <Button fx:id="ButtonBrowse" mnemonicParsing="false" onAction="#changerPhotoProfil" text="Browse ..." BorderPane.alignment="CENTER" />
+                                 </center>
                               </BorderPane>
                            </content></TitledPane>
                       <TitledPane animated="false" text="Gérer">

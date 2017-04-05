@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url('file:////Users/chloeramananjo/Desktop/SCHOOL/POO/Images_projet/Connexion.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControlUtilisateur">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url('file:///Users/sarunyaa/Documents/workspace/ProjetOffresStageChloe/src/images/Connexion.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControlUtilisateur">
    <children>
       <Button fx:id="buttonConnex" layoutX="319.0" layoutY="407.0" mnemonicParsing="false" onAction="#sauthentifier" prefHeight="38.0" prefWidth="160.0" text="Connexion" textFill="#1b1919" />
       <TextField fx:id="textMDP" layoutX="281.0" layoutY="253.0" prefHeight="30.0" prefWidth="239.0" />
