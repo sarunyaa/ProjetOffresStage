@@ -12,15 +12,17 @@ import javafx.scene.layout.AnchorPane;
 
 
 public class Main extends Application {
-	
-	
+
+
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-	
+
+
 	@Override
 	public void start(Stage primaryStage) {
+<<<<<<< HEAD
+=======
 	/*	try {
 			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/Accueil.fxml"));
 			primaryStage.setScene(new Scene(root, 850,600));
@@ -64,7 +66,26 @@ public class Main extends Application {
 			    primaryStage.show();
 			  }
 			
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 
+		try {
+			// Localisation du fichier FXML.
+			final URL url = getClass().getClassLoader().getResource("view/Accueil.fxml");
 
-	}	
+			// Création du loader.
+			final FXMLLoader fxmlLoader = new FXMLLoader(url);
+
+			// Chargement du FXML.
+			final AnchorPane root = (AnchorPane) fxmlLoader.load();
+
+			// Création de la scène.
+			final Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+		} catch (IOException ex) {
+			System.err.println("Erreur au chargement: " + ex);
+		}
+		primaryStage.setTitle("Accueil");
+		primaryStage.show();
+	}
+}	
 

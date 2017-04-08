@@ -93,6 +93,8 @@ public class AccueilController {
 
 		System.out.println("bouton inscription cliqué");
 
+		
+		//Genere g = new Genere("view/Inscription", "Mon profil");
 		Stage primaryStage = new Stage();
 
 		try {

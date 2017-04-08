@@ -22,7 +22,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 =======
+<<<<<<< HEAD
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+=======
 >>>>>>> sarunyaa/master
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -33,6 +38,28 @@ public class AdminController {
 
 	@FXML
 	private Button buttonCreerEntreprise;
+<<<<<<< HEAD
+
+	@FXML
+	private Button buttonDeposerOffre;
+
+	@FXML
+	private Button buttonSupprimer;
+
+	@FXML
+	private Button buttonModifier;
+
+	@FXML
+	private Button buttonConsulter;
+
+	@FXML
+	private ImageView imageP;
+
+	@FXML
+	private Button ButtonBrowse;
+
+	@FXML
+=======
 
 	@FXML
 	private Button buttonDeposerOffre;
@@ -54,6 +81,7 @@ public class AdminController {
 
 	@FXML
 <<<<<<< HEAD
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 	private ListView path;
 	
 	@FXML
@@ -64,6 +92,8 @@ public class AdminController {
 	@FXML
 	void consulterOffres(ActionEvent event) {
 		//System.out.println("bouton os cliqué");
+<<<<<<< HEAD
+=======
 =======
 	private ImageView imageP;
 	
@@ -75,6 +105,7 @@ public class AdminController {
     void consulterOffres(ActionEvent event) {
     	//System.out.println("bouton os cliqué");
 >>>>>>> sarunyaa/master
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 
 		Stage primaryStage = new Stage();
 
@@ -244,6 +275,61 @@ public class AdminController {
 
 }
 
+<<<<<<< HEAD
+	//clique sur "change my profil photo" -> fichier de séléction photo
+	public void changerPhotoProfil(ActionEvent event) {
+		FileChooser fileChooser = new FileChooser();
+
+		//Set extension filter
+		FileChooser.ExtensionFilter extFilter = 
+				new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG", "jpg files (*.jpg)", "*.jpg",
+						"PNG files (*.PNG)", "*.PNG","png files (*.png)", "*.png",
+						"JPEG files (*.JPEG)", "*.JPEG","jpeg files (*.jpeg)", "*.jpeg");
+	
+		fileChooser.getExtensionFilters()
+		.addAll(extFilter);
+
+
+		//Show open file dialog
+		File file = fileChooser.showOpenDialog(null);
+
+		try {
+			BufferedImage bufferedImage = ImageIO.read(file);
+			Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+			imageP.setImage(image);
+		} catch (IOException ex) {
+			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		if (file != null){
+			path.getItems().add(file.getAbsolutePath());
+			System.out.println("browse");
+		}
+		else{
+			System.out.println("File isn't valid");
+		}
+
+//		Connection con = Connect.ConnectDB();
+//		((Connect) con).filen();
+//		String vpath = ((Connect) con).getp();
+//		try {
+//			if (vpath == null) {
+//
+//			} else {
+//				System.out.println("llol");
+//
+//
+//			} 
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}
+
+	}
+
+}
+
+=======
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 
 
 

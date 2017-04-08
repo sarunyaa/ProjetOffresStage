@@ -112,7 +112,13 @@
                                     <ListView fx:id="path" prefHeight="36.0" prefWidth="205.0" BorderPane.alignment="CENTER" />
                                  </bottom>
 =======
+<<<<<<< HEAD
+                                 <bottom>
+                                    <ListView fx:id="path" prefHeight="36.0" prefWidth="205.0" BorderPane.alignment="CENTER" />
+                                 </bottom>
+=======
 >>>>>>> sarunyaa/master
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
                               </BorderPane>
                            </content></TitledPane>
                       <TitledPane animated="false" text="Gérer">

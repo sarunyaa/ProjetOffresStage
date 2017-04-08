@@ -5,6 +5,11 @@ import java.text.SimpleDateFormat;
 
 import javafx.beans.property.SimpleStringProperty;
 
+<<<<<<< HEAD
+public class Etudiant {
+
+	//	private int idEtudiant=0;
+=======
 public class Etudiant extends Utilisateur{
 <<<<<<< HEAD
 
@@ -13,6 +18,7 @@ public class Etudiant extends Utilisateur{
 	
 //	private int idEtudiant=0;
 >>>>>>> sarunyaa/master
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 	public SimpleStringProperty nom;
 	public SimpleStringProperty prenom;
 	private Date dateDeNaissance; 
@@ -26,12 +32,18 @@ public class Etudiant extends Utilisateur{
 	{
 <<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
 		super(login, motdepasse);
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 
 
 		this.nom = new SimpleStringProperty(nom);
 		this.prenom = new SimpleStringProperty(prenom);
 		//	this.dateDeNaissance = new Date();
+<<<<<<< HEAD
+=======
 =======
 		
 		super(login, motdepasse);
@@ -41,11 +53,15 @@ public class Etudiant extends Utilisateur{
 		this.prenom = new SimpleStringProperty(prenom);
 	//	this.dateDeNaissance = new Date();
 >>>>>>> sarunyaa/master
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 		this.dateDeNaissance = ddn;
 		this.niveauEtude = new SimpleStringProperty(niveauEtude);
 		this.adresseMail = new SimpleStringProperty(adresseMail);
 		//idEtudiant = idEtudiant +1;
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 
 	}
 
@@ -59,6 +75,14 @@ public class Etudiant extends Utilisateur{
 
 	public String getNom() {
 		return nom.get();
+<<<<<<< HEAD
+	}
+
+	public void setNom(String value) {
+		nom.set(value);
+	}
+
+=======
 	}
 
 	public void setNom(String value) {
@@ -101,6 +125,7 @@ public class Etudiant extends Utilisateur{
 		nom.set(value);
 	}
 
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 	public String getPrenom() {
 		return prenom.get();
 	}
@@ -117,7 +142,10 @@ public class Etudiant extends Utilisateur{
 		this.dateDeNaissance = value;
 	}
 
+<<<<<<< HEAD
+=======
 >>>>>>> sarunyaa/master
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 	public String getNiveauEtude() {
 		return niveauEtude.get();
 	}
@@ -134,6 +162,9 @@ public class Etudiant extends Utilisateur{
 		adresseMail.set(value);
 	}
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 
 
 
@@ -142,6 +173,8 @@ public class Etudiant extends Utilisateur{
 
 }
 
+<<<<<<< HEAD
+=======
 =======
 	
 	
@@ -152,3 +185,4 @@ public class Etudiant extends Utilisateur{
 	}
 	
 >>>>>>> sarunyaa/master
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e

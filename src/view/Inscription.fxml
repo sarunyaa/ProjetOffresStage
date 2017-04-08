@@ -28,7 +28,10 @@
          <font>
             <Font name="Verdana" size="13.0" />
          </font></TextField>
-      <TextField fx:id="textMDP" layoutX="652.0" layoutY="338.0" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: transparent; -fx-text-inner-color: orange;" />
+         <TextField fx:id="textMDP" layoutX="652.0" layoutY="339.0" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: transparent; -fx-text-inner-color: orange;">
+         <font>
+            <Font name="Verdana" size="13.0" />
+         </font></TextField>
       <Pane layoutX="353.0" layoutY="251.0" prefHeight="23.0" prefWidth="169.0" style="-fx-background-color: white; -fx-border-radius: 10;" />
       <ComboBox fx:id="choixNiveau" layoutX="353.0" layoutY="248.0" maxHeight="27.0" prefHeight="27.0" prefWidth="196.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;" />
       <Button fx:id="buttonOk" layoutX="276.0" layoutY="397.0" mnemonicParsing="false" onAction="#sinscrire" prefHeight="41.0" prefWidth="223.0" style="-fx-border-color: white;" />

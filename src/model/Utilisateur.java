@@ -49,6 +49,15 @@ public class Utilisateur {
 	public void setMotdepasse(String motdepasse) {
 		this.motdepasse = motdepasse;
 	}
+<<<<<<< HEAD
+
+
+	public String getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+=======
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
 	
 	
 
