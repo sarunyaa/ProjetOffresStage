@@ -5,12 +5,14 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
 import application.Main;
+import dao.EtudiantDao;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,11 +20,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Etudiant;
 
 public class AdminController {
 
@@ -47,6 +53,64 @@ public class AdminController {
 	@FXML
 	private Button ButtonBrowse;
 	
+	@FXML
+    private TableColumn<?, ?> idEnt;
+
+    @FXML
+    private TableColumn<?, ?> rsE;
+
+    @FXML
+    private TableColumn<?, ?> telE;
+
+    @FXML
+    private TableColumn<?, ?> secteurE;
+
+    @FXML
+    private TableColumn<?, ?> villeE;
+
+    @FXML
+    private TableColumn<?, ?> rueE;
+
+    @FXML
+    private TableColumn<?, ?> codeE;
+    
+    @FXML
+    private Tab tabPaneEt;
+
+
+    @FXML
+    private TableColumn<?, ?> idE;
+
+    @FXML
+    private TableColumn<?, ?> nomE;
+
+    @FXML
+    private TableColumn<?, ?> prenomE;
+
+    @FXML
+    private TableColumn<?, ?> ddnE;
+
+    @FXML
+    private TableColumn<?, ?> nivE;
+
+    @FXML
+    private TableColumn<?, ?> mailE;
+	
+	
+    @FXML
+    void listEtudiant(ActionEvent event) {
+    	EtudiantDao ed = new EtudiantDao();
+    	ed.getAll();
+    	ArrayList<Etudiant> list = new ArrayList<Etudiant>();
+    	//for(){}
+    	
+    
+    	//Afficher la liste des étudiants dans tablecolumn
+    	
+
+    }
+	
+    
     //clic sur bouton consulter -> page d'offres de stages
     @FXML
     void consulterOffres(ActionEvent event) {

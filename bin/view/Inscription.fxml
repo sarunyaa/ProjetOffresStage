@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url('file:///Users/sarunyaa/Documents/workspace/ProjetOffresStage/src/images/Inscription.png');" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EtudiantController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url('file:images/Inscription.png');" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EtudiantController">
    <children>
       <TextField fx:id="textNom" layoutX="79.0" layoutY="127.0" prefHeight="18.0" prefWidth="321.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;">
          <font>

@@ -3,24 +3,27 @@ package model;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Entreprise extends Utilisateur{
+public class Entreprise{
 	
 	private SimpleIntegerProperty idEntreprise;
 	public SimpleStringProperty raisonSociale;
 	public SimpleIntegerProperty telEntreprise;
 	public SimpleStringProperty secteurActivité;
-	private String adresseRue;
-	private String adresseVille;
-	private int adresseCodePostal;
+	private SimpleStringProperty adresseRue;
+	private SimpleStringProperty adresseVille;
+	private SimpleIntegerProperty adresseCodePostal;
 	
 	/* Constructeur */
-	public Entreprise(String login, String motdepasse, String adresseRue, String adresseVille,
-			int adresseCodePostal) 
-	{
-		super(login, motdepasse);
-		this.raisonSociale = raisonSociale;
-		this.telEntreprise = telEntreprise;
-		this.secteurActivité = secteurActivité;
+
+	public Entreprise(String raisonSociale, int telEntreprise,
+			String secteurActivité, String adresseRue, String adresseVille, int adresseCodePostal) {
+
+		this.raisonSociale = new SimpleStringProperty(raisonSociale);
+		this.telEntreprise = new SimpleIntegerProperty(telEntreprise);
+		this.secteurActivité = new SimpleStringProperty(secteurActivité);
+		this.adresseRue = new SimpleStringProperty(adresseRue);
+		this.adresseVille = new SimpleStringProperty(adresseVille);
+		this.adresseCodePostal = new SimpleIntegerProperty(adresseCodePostal);
 	}
 	
 	

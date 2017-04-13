@@ -5,6 +5,7 @@ public class Utilisateur {
 	private int idUtilisateur;
 	private String login;
 	private String motdepasse;
+	private String type;
 	
 	
 	
@@ -12,6 +13,7 @@ public class Utilisateur {
 	public Utilisateur(String login, String motdepasse) {
 		this.login = login;
 		this.motdepasse = motdepasse;
+		//this.type = type;
 		
 	}
 

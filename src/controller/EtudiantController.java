@@ -110,6 +110,7 @@ public class EtudiantController implements Initializable {
 
 
 	//final DatePicker datePicker = new DatePicker();
+	
 	@FXML
 	LocalDate date(ActionEvent event) {
 
@@ -136,13 +137,13 @@ public class EtudiantController implements Initializable {
 		//		java.sql.Date sqlDate = new java.sql.Date(dateDeNaissance.getTime());
 		//pst.setDate(5, sqlDate);
 		LocalDate dateDeNaissance=textDdn.getValue();
-		String niveauEtude=choixNiveau.getPromptText();
+		String niveauEtude=choixNiveau.getValue().toString().trim();
 		String adresseMail=textMail.getText();
 		String login=textLogin.getText();
 		String motdepasse=textMDP.getText();
 
-		Etudiant et = new Etudiant(nom, prenom, null, niveauEtude, adresseMail, login, motdepasse);
-		Utilisateur u = new Utilisateur();
+		Etudiant et = new Etudiant(nom, prenom, null, niveauEtude, adresseMail);
+		Utilisateur u = new Utilisateur(login,motdepasse);
 		EtudiantDao dao = new EtudiantDao();
 		dao.ajouter(u, et);
 

@@ -1,7 +1,10 @@
 package dao;
 
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -15,18 +18,43 @@ public class EtudiantDao implements EtudiantInterface {
 
 	java.sql.Connection connection;
 
-	//final String create = "INSERT into Etudiant (nom, prénom, dateDeNaissance, niveauEtude, adresseMail) VALUE (?,?,?,?,?);";
-	final String createU = "INSERT into Utilisateur (idUtilisateur, login, motdepasse) VALUE (?,?,?);";
-	final String createE = "INSERT into Etudiant(Utilisateur_idUtilisateur, nom,  prénom, dateDeNaissance, niveauEtude, adresseMail)VALUE (NULL,?,?,?,?,?);";
-
+	final String createU = "INSERT into Utilisateur (login, motdepasse) VALUE (?,?);";
+	final String createE = "INSERT into Etudiant(IdEtudiant, nom,  prenom, dateDeNaissance, niveauEtude, adresseMail)VALUE (NULL,?,?,?,?,?);";
+	final String getAllE ="SELECT * FROM `Etudiant` ";
 	final String delete = "DELETE FROM etudiant where id=? ;";
-	//final String update = "UPDATE etudiant set nom=?, prenom=?, dateDeNaissance=?, niveauEtude=?, adresseMail=? ";
+	final String update = "UPDATE etudiant set nom=?, prenom=?, dateDeNaissance=?, niveauEtude=?, adresseMail=? ";
 	//final String update = "UPDATE etudiant set nom=?, prénom=?, dateDeNaissance=?, niveauEtude=?, adresseMail=? ";
 
 
 	public EtudiantDao(){
 		//Connexion avec la bdd
 		connection = Connect.ConnectDB() ;	
+	}
+	
+	public List<Etudiant> getAll() {
+		List<Etudiant> liste = null;
+		PreparedStatement stat = null;
+		try {
+			liste = new ArrayList<Etudiant>();
+			stat = (PreparedStatement) connection.prepareStatement(getAllE);
+			ResultSet rs = stat.executeQuery();
+
+			while (rs.next()) {
+				Etudiant et = new Etudiant(rs.getString("nom"), rs.getString("prenom"), null, rs.getString("niveauEtude"), rs.getString("adresseMail"));
+						
+				liste.add(et);
+				
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				stat.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return liste;
 	}
 
 	public void ajouter(Utilisateur u, Etudiant e) {
@@ -36,9 +64,9 @@ public class EtudiantDao implements EtudiantInterface {
 
 		try {
 			statement = (PreparedStatement) connection.prepareStatement(createU);
-			statement.setInt(1, 0);
-			statement.setString(2, u.getLogin());
-			statement.setString(3, u.getMotdepasse());
+			//statement.setInt(1, 0);
+			statement.setString(1, u.getLogin());
+			statement.setString(2, u.getMotdepasse());
 
 			statement1 = (PreparedStatement) connection.prepareStatement(createE);
 

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AccueilAnchor" fx:id="AccueilAnchor" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url('file:///Users/sarunyaa/Documents/workspace/ProjetOffresStage/src/images/Accueil.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilController">
+<AnchorPane id="AccueilAnchor" fx:id="AccueilAnchor" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url('file:images/Accueil.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>

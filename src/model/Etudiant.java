@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class Etudiant extends Utilisateur{
+public class Etudiant {
 	
 //	private int idEtudiant=0;
 	public SimpleStringProperty nom;
@@ -17,12 +17,11 @@ public class Etudiant extends Utilisateur{
 	/* Constructeur */
 	public Etudiant(String nom,
 			String prenom, Date ddn, String niveauEtude,
-			String adresseMail,String login, String motdepasse) 
+			String adresseMail) 
 	{
 		
-		super(login, motdepasse);
 		
-		
+				
 		this.nom = new SimpleStringProperty(nom);
 		this.prenom = new SimpleStringProperty(prenom);
 	//	this.dateDeNaissance = new Date();
