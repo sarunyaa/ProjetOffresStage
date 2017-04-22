@@ -80,7 +80,7 @@ public class AccueilController {
 		} catch (IOException ex) {
 			System.err.println("Erreur au chargement: " + ex);
 		}
-		primaryStage.setTitle("Se connecter");
+		primaryStage.setTitle("Se connecter en tant qu'administrateur");
 		primaryStage.show();
 		primaryStage.setResizable(false);
 		((Node) event.getSource()).getScene().getWindow().hide();

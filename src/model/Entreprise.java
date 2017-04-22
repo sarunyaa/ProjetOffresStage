@@ -11,19 +11,20 @@ public class Entreprise{
 	public SimpleStringProperty secteurActivité;
 	private SimpleStringProperty adresseRue;
 	private SimpleStringProperty adresseVille;
-	private SimpleIntegerProperty adresseCodePostal;
+	private SimpleStringProperty adresseCodePostal;
 	
 	/* Constructeur */
 
-	public Entreprise(String raisonSociale, int telEntreprise,
-			String secteurActivité, String adresseRue, String adresseVille, int adresseCodePostal) {
+	public Entreprise(String raisonSociale, String adresseRue, String adresseVille, String adresseCodePostal, int telEntreprise,
+			String secteurActivité) {
 
+	//	this.idEntreprise = new SimpleIntegerProperty(idEntreprise);
 		this.raisonSociale = new SimpleStringProperty(raisonSociale);
 		this.telEntreprise = new SimpleIntegerProperty(telEntreprise);
 		this.secteurActivité = new SimpleStringProperty(secteurActivité);
 		this.adresseRue = new SimpleStringProperty(adresseRue);
 		this.adresseVille = new SimpleStringProperty(adresseVille);
-		this.adresseCodePostal = new SimpleIntegerProperty(adresseCodePostal);
+		this.adresseCodePostal = new SimpleStringProperty(adresseCodePostal);
 	}
 	
 	

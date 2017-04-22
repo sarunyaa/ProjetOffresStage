@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -39,7 +40,7 @@ public class AdminConnexion {
 	private Button buttonConnex;
 
 	@FXML
-	private TextField textMDP;
+    private PasswordField textMDP;
 
 
 	@FXML
@@ -104,7 +105,7 @@ public class AdminConnexion {
 	//System.out.println("bouton connexion cliqué");	
 		String login=textLogin.getText();
 		String motdepasse=textMDP.getText();	
-		System.out.println(login);
+		//System.out.println(login);
 		AdminDao ad = new AdminDao();
 		if(ad.trouver(login, motdepasse)){
 			ouvreAdmin(event);

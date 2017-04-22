@@ -3,11 +3,12 @@ package model;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Etudiant {
 	
-//	private int idEtudiant=0;
+	private SimpleIntegerProperty idEtudiant;
 	public SimpleStringProperty nom;
 	public SimpleStringProperty prenom;
 	private Date dateDeNaissance; 
@@ -21,7 +22,8 @@ public class Etudiant {
 	{
 		
 		
-				
+	//	this.idEtudiant = new SimpleIntegerProperty(id);
+		
 		this.nom = new SimpleStringProperty(nom);
 		this.prenom = new SimpleStringProperty(prenom);
 	//	this.dateDeNaissance = new Date();

@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.ResultSetMetaData;
 
 import controller.Connect;
 import model.Etudiant;
@@ -30,6 +31,7 @@ public class EtudiantDao implements EtudiantInterface {
 		//Connexion avec la bdd
 		connection = Connect.ConnectDB() ;	
 	}
+	
 	
 	public List<Etudiant> getAll() {
 		List<Etudiant> liste = null;
