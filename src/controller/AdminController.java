@@ -29,11 +29,24 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+<<<<<<< HEAD
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+=======
+<<<<<<< HEAD
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+=======
+<<<<<<< HEAD
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+=======
+>>>>>>> sarunyaa/master
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -123,6 +136,7 @@ public class AdminController implements Initializable {
 	@FXML
     private TableColumn<?, ?> idOffreCo;
 
+<<<<<<< HEAD
     @FXML
     private TableColumn<?, ?> Entreprise_id_EntrepriseCo;
 
@@ -164,6 +178,68 @@ public class AdminController implements Initializable {
 		initOffre();
 
 	}
+=======
+	@FXML
+	private Button buttonCreerEntreprise;
+<<<<<<< HEAD
+
+	@FXML
+	private Button buttonDeposerOffre;
+
+	@FXML
+	private Button buttonSupprimer;
+
+	@FXML
+	private Button buttonModifier;
+
+	@FXML
+	private Button buttonConsulter;
+
+	@FXML
+	private ImageView imageP;
+
+	@FXML
+	private Button ButtonBrowse;
+
+	@FXML
+=======
+
+	@FXML
+	private Button buttonDeposerOffre;
+
+	@FXML
+	private Button buttonSupprimer;
+
+	@FXML
+	private Button buttonModifier;
+
+	@FXML
+	private Button buttonConsulter;
+
+	@FXML
+	private ImageView imageP;
+
+	@FXML
+	private Button ButtonBrowse;
+
+	@FXML
+<<<<<<< HEAD
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
+	private ListView path;
+	
+	@FXML
+	private TextField pathtext;
+
+
+	//clic sur bouton consulter -> page d'offres de stages
+	@FXML
+	void consulterOffres(ActionEvent event) {
+		//System.out.println("bouton os cliqué");
+<<<<<<< HEAD
+=======
+=======
+	private ImageView imageP;
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 	
 	public void initEnt(){
 		idEnt.setCellValueFactory(new PropertyValueFactory<>("idEntreprise"));
@@ -179,6 +255,7 @@ public class AdminController implements Initializable {
 
 	}
 	
+<<<<<<< HEAD
 	void listEntreprise(){
 		PreparedStatement state = null;
 
@@ -310,6 +387,14 @@ public class AdminController implements Initializable {
 	@FXML
 	void consulterOffres(ActionEvent event) {
 		//System.out.println("bouton os cliqué");
+=======
+    //clic sur bouton consulter -> page d'offres de stages
+    @FXML
+    void consulterOffres(ActionEvent event) {
+    	//System.out.println("bouton os cliqué");
+>>>>>>> sarunyaa/master
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 
 		Stage primaryStage = new Stage();
 
@@ -361,6 +446,66 @@ public class AdminController implements Initializable {
 		primaryStage.setResizable(false);
 		((Node) event.getSource()).getScene().getWindow().hide();
 	}
+<<<<<<< HEAD
+=======
+    
+  //clique sur "change my profil photo" -> fichier de séléction photo
+  	public void changerPhotoProfil(ActionEvent event) {
+  		FileChooser fileChooser = new FileChooser();
+
+  		//Set extension filter
+  		FileChooser.ExtensionFilter extFilter = 
+  				new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG", "jpg files (*.jpg)", "*.jpg",
+  						"PNG files (*.PNG)", "*.PNG","png files (*.png)", "*.png",
+  						"JPEG files (*.JPEG)", "*.JPEG","jpeg files (*.jpeg)", "*.jpeg");
+  		//		FileChooser.ExtensionFilter extFilterjpg = 
+  		//				new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+  		//		FileChooser.ExtensionFilter extFilterPNG = 
+  		//				new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+  		//		FileChooser.ExtensionFilter extFilterpng = 
+  		//				new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+  		//		new FileChooser.ExtensionFilter("jpeg files (*.jpeg)", "*.jpeg");
+
+  		fileChooser.getExtensionFilters()
+  		.addAll(extFilter);
+
+
+  		//Show open file dialog
+  		File file = fileChooser.showOpenDialog(null);
+
+  		try {
+  			BufferedImage bufferedImage = ImageIO.read(file);
+  			Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+  			imageP.setImage(image);
+  		} catch (IOException ex) {
+  			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+  		}
+
+  		if (file != null){
+  			//listview.getItems().add(selectedFile.getAbsolutePath());
+  			System.out.println("browse");
+  		}
+  		else{
+  			System.out.println("File isn't valid");
+  		}
+
+  		Connection con = Connect.ConnectDB();
+  		((Connect) con).filen();
+  		String vpath = ((Connect) con).getp();
+  		try {
+  			if (vpath == null) {
+
+  			} else {
+  				System.out.println("llol");
+
+
+  			} 
+  		}catch (Exception e) {
+  			e.printStackTrace();
+  		}
+
+  	}
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 
 	//clique sur "change my profil photo" -> fichier de séléction photo
 	public void changerPhotoProfil(ActionEvent event) {
@@ -395,13 +540,19 @@ public class AdminController implements Initializable {
 		}
 
 		if (file != null){
+<<<<<<< HEAD
 			//listview.getItems().add(selectedFile.getAbsolutePath());
+=======
+			path.getItems().add(file.getAbsolutePath());
+			pathtext.getCharacters();
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 			System.out.println("browse");
 		}
 		else{
 			System.out.println("File isn't valid");
 		}
 
+<<<<<<< HEAD
 		Connection con = Connect.ConnectDB();
 		((Connect) con).filen();
 		String vpath = ((Connect) con).getp();
@@ -424,6 +575,82 @@ public class AdminController implements Initializable {
 
 }
 
+=======
+//		Connection con = Connect.ConnectDB();
+//		((Connect) con).filen();
+//		String vpath = ((Connect) con).getp();
+//		try {
+//			if (vpath == null) {
+//
+//			} else {
+//				System.out.println("llol");
+//
+//
+//			} 
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}
+
+	}
+
+}
+
+<<<<<<< HEAD
+	//clique sur "change my profil photo" -> fichier de séléction photo
+	public void changerPhotoProfil(ActionEvent event) {
+		FileChooser fileChooser = new FileChooser();
+
+		//Set extension filter
+		FileChooser.ExtensionFilter extFilter = 
+				new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG", "jpg files (*.jpg)", "*.jpg",
+						"PNG files (*.PNG)", "*.PNG","png files (*.png)", "*.png",
+						"JPEG files (*.JPEG)", "*.JPEG","jpeg files (*.jpeg)", "*.jpeg");
+	
+		fileChooser.getExtensionFilters()
+		.addAll(extFilter);
+
+
+		//Show open file dialog
+		File file = fileChooser.showOpenDialog(null);
+
+		try {
+			BufferedImage bufferedImage = ImageIO.read(file);
+			Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+			imageP.setImage(image);
+		} catch (IOException ex) {
+			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		if (file != null){
+			path.getItems().add(file.getAbsolutePath());
+			System.out.println("browse");
+		}
+		else{
+			System.out.println("File isn't valid");
+		}
+
+//		Connection con = Connect.ConnectDB();
+//		((Connect) con).filen();
+//		String vpath = ((Connect) con).getp();
+//		try {
+//			if (vpath == null) {
+//
+//			} else {
+//				System.out.println("llol");
+//
+//
+//			} 
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}
+
+	}
+
+}
+
+=======
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 
 
 

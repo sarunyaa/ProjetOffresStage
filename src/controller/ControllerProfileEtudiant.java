@@ -4,26 +4,36 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+=======
+import java.time.LocalDate;
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
+<<<<<<< HEAD
 import com.mysql.jdbc.Statement;
 
+=======
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 import application.Main;
 import dao.EtudiantDao;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+<<<<<<< HEAD
 import javafx.fxml.Initializable;
+=======
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -39,7 +49,11 @@ import javafx.stage.Stage;
 import model.Etudiant;
 import model.Utilisateur;
 
+<<<<<<< HEAD
 public class ControllerProfileEtudiant implements Initializable {
+=======
+public class ControllerProfileEtudiant {
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 
 
 	java.sql.Connection connection = Connect.ConnectDB();
@@ -61,9 +75,12 @@ public class ControllerProfileEtudiant implements Initializable {
 
 	@FXML
 	private TextField textMail;
+<<<<<<< HEAD
 	
 	@FXML
 	private TextField id;
+=======
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 
 	@FXML
 	private TextField textAnnee;
@@ -76,13 +93,18 @@ public class ControllerProfileEtudiant implements Initializable {
 
 	@FXML
 	private Button accesCandidater;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 	@FXML
 	private Button buttonMaj;
 
 	@FXML
 	private ListView path;
 
+<<<<<<< HEAD
 	//Etudiant etu;
 
 
@@ -122,6 +144,8 @@ public class ControllerProfileEtudiant implements Initializable {
 		}
 
 	}
+=======
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 
 
 	//clic sur bouton candidater -> page d'offres de stages et de candidature
@@ -143,7 +167,11 @@ public class ControllerProfileEtudiant implements Initializable {
 			final AnchorPane root = (AnchorPane) fxmlLoader.load();
 
 			// Création de la scène.
+<<<<<<< HEAD
 			final Scene scene = new Scene(root);
+=======
+			final Scene scene = new Scene(root, 600, 400);
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 			primaryStage.setScene(scene);
 		} catch (IOException ex) {
 			System.err.println("Erreur au chargement: " + ex);
@@ -188,12 +216,18 @@ public class ControllerProfileEtudiant implements Initializable {
 			System.out.println("File isn't valid");
 		}
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 	}
 
 
 	@FXML
 	void maj(ActionEvent event) throws ClassNotFoundException {
 
+<<<<<<< HEAD
 		Connection connection = Connect.ConnectDB() ;
 
 
@@ -227,17 +261,47 @@ public class ControllerProfileEtudiant implements Initializable {
 		}
 
 
+=======
+		
+		
+		String nom=textNom.getText();
+		String prenom=textPrenom.getText();
+		//		java.util.Date dateDeNaissance = 
+		//				java.util.Date.from(textDdn.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+		//		java.sql.Date sqlDate = new java.sql.Date(dateDeNaissance.getTime());
+		//pst.setDate(5, sqlDate);
+		//LocalDate dateDeNaissance=textDdn.getValue();
+		//String niveauEtude=choixNiveau.getPromptText();
+		String adresseMail=textMail.getText();
+		//String login=textLogin.getText();
+		//String motdepasse=textMDP.getText();
+
+
+	//	Etudiant et = new Etudiant(nom, prenom, null, niveauEtude, adresseMail, login, motdepasse);
+		
+		
+		
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 		//Pop-up
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information");
 		alert.setHeaderText(null);
+<<<<<<< HEAD
 		alert.setContentText("Données mises à jour !");
+=======
+		alert.setContentText("Donnée mise à jour !");
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
 		alert.showAndWait();	
 
 
 
 	}
 
+<<<<<<< HEAD
 
 
 }
+=======
+}
+
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07

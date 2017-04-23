@@ -14,7 +14,11 @@
    <children>
       <ImageView fx:id="imageP" fitHeight="150.0" fitWidth="122.0" layoutX="412.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
          <image>
+<<<<<<< HEAD
             <Image url="@../office_girl.png" />
+=======
+            <Image url="@../../../../../Desktop/office_girl.png" />
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
          </image>
       </ImageView>
       <Label layoutX="54.0" layoutY="130.0" text="Nom" />
@@ -44,7 +48,10 @@
          </children>
       </Pane>
       <ListView fx:id="path" layoutX="373.0" layoutY="250.0" prefHeight="35.0" prefWidth="200.0" />
+<<<<<<< HEAD
       <TextField fx:id="id" layoutX="196.0" layoutY="77.0" />
       <Label layoutX="52.0" layoutY="82.0" text="Identité n°" />
+=======
+>>>>>>> 73f42eab7b21fa84485c73524bd3bc780e9eaf07
    </children>
 </AnchorPane>

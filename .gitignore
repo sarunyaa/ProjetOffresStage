@@ -1,0 +1,12 @@
+bin
+.project
+.settings
+.classpath
+.DS_Store
+.metadata
+<<<<<<< HEAD
+.
+..
+=======
+
+>>>>>>> ccb4f467acb2f431cf35554b547d6584567d397e
