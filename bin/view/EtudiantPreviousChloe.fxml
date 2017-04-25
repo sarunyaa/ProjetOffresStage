@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EtuController">
+   <children>
+      <SplitPane fx:id="splitPane1" dividerPositions="0.7105263157894737" layoutX="36.0" layoutY="277.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane fx:id="anchor2" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TabPane fx:id="tab1" layoutX="98.0" layoutY="32.0" prefHeight="598.0" prefWidth="595.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                        <Tab text="Offres de stage">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="offresTab" layoutX="111.0" layoutY="69.0" prefHeight="565.0" prefWidth="563.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="idOffreCo" prefWidth="75.0" text="idOffre" />
+                                          <TableColumn fx:id="Entreprise_id_EntrepriseCo" prefWidth="94.0" text="Entreprise_id_Entreprise" />
+                                        <TableColumn fx:id="libelleOffreCo" prefWidth="75.0" text="libelleOffre" />
+                                          <TableColumn fx:id="descriptifOffreCo" prefWidth="75.0" text="descriptifOffre" />
+                                          <TableColumn fx:id="domaineOffreCo" prefWidth="75.0" text="domaineOffre" />
+                                          <TableColumn fx:id="dateDebutOffreCo" prefWidth="75.0" text="dateDebutOffre" />
+                                          <TableColumn fx:id="dureeOffreCo" prefWidth="75.0" text="dureeOffre" />
+                                          <TableColumn fx:id="cheminOffreCo" prefWidth="56.0" text="cheminOffre" />
+                                      </columns>
+                                    </TableView>
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="156.0">
+               <children>
+                  <Accordion layoutX="63.0" layoutY="177.0" prefHeight="598.0" prefWidth="195.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <panes>
+                      <TitledPane animated="false" text="Mon Profil">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <top>
+                                    <ImageView fx:id="imageP" fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@file:/Users/sarunyaa/Documents/workspace/ProjetOffresStage/src/images/office_girl.png" />
+                                       </image>
+                                    </ImageView>
+                                 </top>
+                                 <bottom>
+                                    <ListView fx:id="path" prefHeight="36.0" prefWidth="205.0" BorderPane.alignment="CENTER" />
+                                 </bottom>
+                              </BorderPane>
+                           </content></TitledPane>
+                    </panes>
+                  </Accordion>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

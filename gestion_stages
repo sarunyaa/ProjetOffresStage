@@ -1,0 +1,269 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
+--
+-- Client :  localhost
+-- Généré le :  Mar 25 Avril 2017 à 20:36
+-- Version du serveur :  10.1.21-MariaDB
+-- Version de PHP :  7.1.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données :  `gestion_stages`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Admin`
+--
+
+CREATE TABLE `Admin` (
+  `login` varchar(45) DEFAULT NULL,
+  `motdepasse` varchar(45) DEFAULT NULL,
+  `photo` blob
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `Admin`
+--
+
+INSERT INTO `Admin` (`login`, `motdepasse`, `photo`) VALUES
+('saru', 'rajah', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Candidatures`
+--
+
+CREATE TABLE `Candidatures` (
+  `idCandidatures` int(11) NOT NULL,
+  `OffreStage_idOffre` int(11) NOT NULL,
+  `Etudiant_idEtudiant` int(11) NOT NULL,
+  `Offres_Entreprise_idEntreprise` int(11) DEFAULT NULL,
+  `CV` longblob,
+  `LM` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `CandidaturesAcceptés`
+--
+
+CREATE TABLE `CandidaturesAcceptés` (
+  `Candidatures_idCandidatures` int(11) NOT NULL,
+  `Etudiant_idEtudiant` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Entreprise`
+--
+
+CREATE TABLE `Entreprise` (
+  `id_Entreprise` int(11) NOT NULL,
+  `raisonSociale` varchar(45) DEFAULT NULL,
+  `adresseRue` varchar(45) DEFAULT NULL,
+  `adresseVille` varchar(45) DEFAULT NULL,
+  `adresseCodePostal` varchar(45) DEFAULT NULL,
+  `mailEntreprise` varchar(45) DEFAULT NULL,
+  `telEntreprise` int(11) DEFAULT NULL,
+  `secteurActivité` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `Entreprise`
+--
+
+INSERT INTO `Entreprise` (`id_Entreprise`, `raisonSociale`, `adresseRue`, `adresseVille`, `adresseCodePostal`, `mailEntreprise`, `telEntreprise`, `secteurActivité`) VALUES
+(3, 'j', 'k', 'j', 'k', 'l', 0, 'àà'),
+(87, 'capgemini', 'opera', 'paris', '75008', 'cap@gmail.com', 61654789, 'informatique'),
+(88, 'sopra', 'concorde', 'paris', '75006', 'sopra@gmail.com', 7865439, 'informatique');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Etudiant`
+--
+
+CREATE TABLE `Etudiant` (
+  `idEtudiant` int(11) NOT NULL,
+  `nom` varchar(45) DEFAULT NULL,
+  `prenom` varchar(45) DEFAULT NULL,
+  `dateDeNaissance` date DEFAULT NULL,
+  `niveauEtude` varchar(45) DEFAULT NULL,
+  `adresseMail` varchar(45) DEFAULT NULL,
+  `photoProfil` blob
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `Etudiant`
+--
+
+INSERT INTO `Etudiant` (`idEtudiant`, `nom`, `prenom`, `dateDeNaissance`, `niveauEtude`, `adresseMail`, `photoProfil`) VALUES
+(88, 'BENREDJEM', 'Sara', '1993-04-01', 'BAC+3', 'sara@gmail.com', NULL),
+(90, 'randri', 'tina', '2017-04-14', 'BAC+3', 'tina@gmail.Com', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `OffreStage`
+--
+
+CREATE TABLE `OffreStage` (
+  `idOffre` int(11) NOT NULL,
+  `Entreprise_id_Entreprise` int(11) NOT NULL,
+  `libelleOffre` varchar(45) DEFAULT NULL,
+  `domaineOffre` varchar(45) DEFAULT NULL,
+  `descriptifOffre` longtext,
+  `dateDebutOffre` varchar(45) DEFAULT NULL,
+  `dureeOffre` varchar(45) DEFAULT NULL,
+  `cheminOffre` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `OffreStage`
+--
+
+INSERT INTO `OffreStage` (`idOffre`, `Entreprise_id_Entreprise`, `libelleOffre`, `domaineOffre`, `descriptifOffre`, `dateDebutOffre`, `dureeOffre`, `cheminOffre`) VALUES
+(4, 3, 'offres', 'info', 'oui', '25/05/2017', '34 jours', 'non'),
+(5, 88, 'développeur java', 'développement', 'cette offre concerne ...', '08/05/2017', '3mois', 'chemin 1'),
+(6, 87, 'developpeur c++', 'informatique', 'on a besoin d\'un stagiaire ...', '09/05/2017', '2mois', 'chemin2');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Utilisateur`
+--
+
+CREATE TABLE `Utilisateur` (
+  `Id_Utilisateur` int(11) NOT NULL,
+  `login` varchar(45) NOT NULL,
+  `motdepasse` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `Utilisateur`
+--
+
+INSERT INTO `Utilisateur` (`Id_Utilisateur`, `login`, `motdepasse`, `type`) VALUES
+(3, 'a', 'a', 'entreprise'),
+(86, 'saru', 'saru', 'Etudiant'),
+(87, 'capgemini', 'cap', 'Entreprise'),
+(88, 'sopra', 'sopra', 'entreprise'),
+(89, 'sara', 'sara', 'Etudiant'),
+(90, 'tina', 'tina', 'Etudiant');
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `Candidatures`
+--
+ALTER TABLE `Candidatures`
+  ADD PRIMARY KEY (`idCandidatures`),
+  ADD KEY `fk_Candidatures_OffreStage1_idx` (`OffreStage_idOffre`),
+  ADD KEY `fk_Candidatures_Etudiant1_idx` (`Etudiant_idEtudiant`);
+
+--
+-- Index pour la table `CandidaturesAcceptés`
+--
+ALTER TABLE `CandidaturesAcceptés`
+  ADD PRIMARY KEY (`Candidatures_idCandidatures`),
+  ADD KEY `fk_CandidaturesAcceptés_Candidatures1_idx` (`Candidatures_idCandidatures`),
+  ADD KEY `fk_CandidaturesAcceptés_Etudiant1_idx` (`Etudiant_idEtudiant`);
+
+--
+-- Index pour la table `Entreprise`
+--
+ALTER TABLE `Entreprise`
+  ADD PRIMARY KEY (`id_Entreprise`);
+
+--
+-- Index pour la table `Etudiant`
+--
+ALTER TABLE `Etudiant`
+  ADD PRIMARY KEY (`idEtudiant`);
+
+--
+-- Index pour la table `OffreStage`
+--
+ALTER TABLE `OffreStage`
+  ADD PRIMARY KEY (`idOffre`),
+  ADD KEY `fk_OffreStage_Entreprise1_idx` (`Entreprise_id_Entreprise`);
+
+--
+-- Index pour la table `Utilisateur`
+--
+ALTER TABLE `Utilisateur`
+  ADD PRIMARY KEY (`Id_Utilisateur`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `Candidatures`
+--
+ALTER TABLE `Candidatures`
+  MODIFY `idCandidatures` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT pour la table `Entreprise`
+--
+ALTER TABLE `Entreprise`
+  MODIFY `id_Entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+--
+-- AUTO_INCREMENT pour la table `Etudiant`
+--
+ALTER TABLE `Etudiant`
+  MODIFY `idEtudiant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+--
+-- AUTO_INCREMENT pour la table `OffreStage`
+--
+ALTER TABLE `OffreStage`
+  MODIFY `idOffre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `Utilisateur`
+--
+ALTER TABLE `Utilisateur`
+  MODIFY `Id_Utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `Candidatures`
+--
+ALTER TABLE `Candidatures`
+  ADD CONSTRAINT `fk_Candidatures_Etudiant1` FOREIGN KEY (`Etudiant_idEtudiant`) REFERENCES `Etudiant` (`idEtudiant`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Candidatures_OffreStage1` FOREIGN KEY (`OffreStage_idOffre`) REFERENCES `OffreStage` (`idOffre`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `CandidaturesAcceptés`
+--
+ALTER TABLE `CandidaturesAcceptés`
+  ADD CONSTRAINT `fk_CandidaturesAcceptés_Candidatures1` FOREIGN KEY (`Candidatures_idCandidatures`) REFERENCES `Candidatures` (`idCandidatures`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_CandidaturesAcceptés_Etudiant1` FOREIGN KEY (`Etudiant_idEtudiant`) REFERENCES `Etudiant` (`idEtudiant`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `OffreStage`
+--
+ALTER TABLE `OffreStage`
+  ADD CONSTRAINT `fk_OffreStage_Entreprise1` FOREIGN KEY (`Entreprise_id_Entreprise`) REFERENCES `Entreprise` (`id_Entreprise`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

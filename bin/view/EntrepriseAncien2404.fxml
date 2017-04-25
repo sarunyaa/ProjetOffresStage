@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="594.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EntrepriseController">
+   <children>
+      <TabPane layoutY="-2.0" prefHeight="714.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-118.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
+        <tabs>
+            <Tab text="Offres de stage">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="offresTab" layoutX="111.0" layoutY="69.0" prefHeight="250.0" prefWidth="800.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="idOffreCo" prefWidth="75.0" text="idOffre" />
+                              <TableColumn fx:id="Entreprise_id_EntrepriseCo" prefWidth="94.0" text="Entreprise_id_Entreprise" />
+                            <TableColumn fx:id="libelleOffreCo" prefWidth="103.98153686523438" text="libelleOffre" />
+                              <TableColumn fx:id="descriptifOffreCo" prefWidth="119.45388793945312" text="descriptifOffre" />
+                              <TableColumn fx:id="domaineOffreCo" prefWidth="102.4188232421875" text="domaineOffre" />
+                              <TableColumn fx:id="dateDebutOffreCo" prefWidth="115.0498046875" text="dateDebutOffre" />
+                              <TableColumn fx:id="dureeOffreCo" minWidth="3.9501953125" prefWidth="87.52581787109375" text="dureeOffre" />
+                              <TableColumn fx:id="cheminOffreCo" minWidth="9.72137451171875" prefWidth="98.47418212890625" text="cheminOffre" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Candidature">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="657.0" prefWidth="800.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="candidatureTab" onMouseClicked="#selectionerCandidature" prefHeight="267.0" prefWidth="1158.0">
+                                <columns>
+                                  <TableColumn fx:id="idCandidaturesCo" prefWidth="150.0" text="idCandidatures" />
+                                    <TableColumn fx:id="OffreStage_idOffreCo" prefWidth="163.0" text="OffreStage_idOffre" />
+                                    <TableColumn fx:id="Etudiant_idEtudiantCo" prefWidth="138.0" text="Etudiant_idEtudiant" />
+                                    <TableColumn fx:id="Offres_Entreprise_idEntrepriseCo" prefWidth="138.0" text="Offres_Entreprise_idEntreprise" />
+                                    <TableColumn fx:id="CVCo" prefWidth="112.0" text="CV" />
+                                    <TableColumn fx:id="LMCo" prefWidth="97.0" text="LM" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="2.0" layoutY="274.0" prefHeight="289.0" prefWidth="401.0">
+                           <children>
+                              <Label layoutX="18.0" layoutY="106.0" text="Nom" />
+                              <Label layoutX="20.0" layoutY="150.0" text="Prenom" />
+                              <Button fx:id="refuserButton" layoutX="239.0" layoutY="227.0" mnemonicParsing="false" onAction="#refuserCandidature" prefHeight="27.0" prefWidth="92.0" text="Refuser" />
+                              <Button fx:id="accepterButton" layoutX="74.0" layoutY="227.0" mnemonicParsing="false" onAction="#accepterCandidature" prefHeight="27.0" prefWidth="90.0" text="Accepter" />
+                              <Label layoutX="19.0" layoutY="62.0" text="idEtudiant " />
+                              <Label layoutX="147.0" layoutY="14.0" text="Etudier Candidature" />
+                              <TextField fx:id="idTA" layoutX="125.0" layoutY="44.0" />
+                              <TextField fx:id="NomTA" layoutX="125.0" layoutY="101.0" />
+                              <TextField fx:id="prenomTA" layoutX="125.0" layoutY="145.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="379.0" layoutY="268.0" prefHeight="291.0" prefWidth="420.0">
+                           <children>
+                              <TableView fx:id="candidatureAccepteTab" layoutX="13.0" layoutY="39.0" prefHeight="247.0" prefWidth="400.0">
+                                <columns>
+                                  <TableColumn fx:id="nomEtudA" prefWidth="59.127288818359375" text="Nom" />
+                                    <TableColumn fx:id="prenomEtudA" prefWidth="125.49627685546875" text="Prenom" />
+                                </columns>
+                              </TableView>
+                              <Label layoutX="100.0" layoutY="7.0" prefHeight="28.0" prefWidth="177.0" text="Candidatures accéptées " />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
