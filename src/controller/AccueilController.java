@@ -9,8 +9,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -80,7 +82,7 @@ public class AccueilController {
 		} catch (IOException ex) {
 			System.err.println("Erreur au chargement: " + ex);
 		}
-		primaryStage.setTitle("Se connecter en tant qu'administrateur");
+		primaryStage.setTitle("Se connecter en tant qu'utilisateur");
 		primaryStage.show();
 		primaryStage.setResizable(false);
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -115,6 +117,35 @@ public class AccueilController {
 		primaryStage.show();
 		primaryStage.setResizable(false);
 		((Node) event.getSource()).getScene().getWindow().hide();
+
+	}
+	@FXML
+	void clicAbout(ActionEvent event) {
+	Alert alert = new Alert(AlertType.INFORMATION);
+	alert.setTitle("A propos");
+	alert.setHeaderText(null);
+	alert.setContentText("Bienvenue dans notre application vous donnant accès aux offres de stage" + "\n" + " proposées par l'université." +"\n"+" Inscrivez vous afin de pouvoir consulter et candidater. ");
+	alert.showAndWait();
+	}
+
+
+	@FXML
+	void clicContact(ActionEvent event) {
+	Alert alert = new Alert(AlertType.INFORMATION);
+	alert.setTitle("Contactez nous !");
+	alert.setHeaderText(null);
+	alert.setContentText("BENREDJEM Sara\nsarabenredjem@gmail.com \n \nRAMANANJO Chloé\nchloe.ramananjo@outlook.com\n\nSATKUNARAJAH Sarunyaa\nsaru.rajah@gmail.com");
+	alert.showAndWait();
+
+	}
+
+	@FXML
+	void clicHelp(ActionEvent event) {
+	Alert alert = new Alert(AlertType.INFORMATION);
+	alert.setTitle("Besoin d'aide ?");
+	alert.setHeaderText(null);
+	alert.setContentText("Pour toute question, veuillez nous contacter via l'onglet CONTACTEZ-NOUS \n ou adressez vous directement à la scolarité de l'université. ");
+	alert.showAndWait();
 
 	}
 

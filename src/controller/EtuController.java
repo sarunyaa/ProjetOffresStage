@@ -1,7 +1,9 @@
 package controller;
 
 import java.awt.image.BufferedImage;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -25,19 +27,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 import model.OffreStage;
 
 public class EtuController implements Initializable{
@@ -68,12 +75,47 @@ public class EtuController implements Initializable{
 	@FXML
 	private TableColumn<OffreStage, Integer>Entreprise_id_EntrepriseCo;
 
+
 	@FXML
-	private SplitPane splitPane1;
+	private TextArea intitule;
+
 	@FXML
-	private AnchorPane anchor2;
+	private TextArea domaine;
+
 	@FXML
-	private TabPane tab1;
+	private TextArea debut;
+
+	@FXML
+	private TextArea duree;
+
+	@FXML
+	private TextArea description;
+
+	@FXML
+	private Button buttonCV;
+
+	@FXML
+	private Button buttonLDM;
+
+	@FXML
+	private Button buttonPostuler;
+
+	@FXML
+	private TextArea pathCV;
+
+	@FXML
+	private TextArea pathLDM;
+
+	private File fileCV;
+	private File fileLDM;
+
+	private FileInputStream cv;
+	private FileInputStream lm;
+	//private FileInputStream fis;
+	@FXML
+	private TextField idEtudiantTF;
+
+
 
 
 	ObservableList<OffreStage> liste= FXCollections.observableArrayList();
@@ -113,7 +155,7 @@ public class EtuController implements Initializable{
 			while(rs.next()){
 				int idOffre= rs.getInt("idOffre");
 				System.out.println(idOffre);
-				
+
 				int Entreprise_id_Entreprise= rs.getInt("Entreprise_id_Entreprise");
 				System.out.println(Entreprise_id_Entreprise);
 				String libelleOffre= rs.getString("libelleOffre");
@@ -128,7 +170,7 @@ public class EtuController implements Initializable{
 				System.out.println(dureeOffre);
 				String cheminOffre= rs.getString("cheminOffre");
 				System.out.println(cheminOffre);
-				
+
 
 				liste.add(new OffreStage(idOffre,  Entreprise_id_Entreprise,libelleOffre, descriptifOffre, domaineOffre, dateDebutOffre, dureeOffre, cheminOffre));
 
@@ -140,6 +182,10 @@ public class EtuController implements Initializable{
 		}
 		offresTab.getItems().setAll(liste);
 		System.out.println("zaoimejfhlndkosm");
+
+		//		OffreStage Os = offresTab.getSelectionModel().getSelectedItem();
+		//		intitule.setText(Os.getLibelleOffre());
+
 
 
 
@@ -174,6 +220,131 @@ public class EtuController implements Initializable{
 		primaryStage.setResizable(false);
 		((Node) event.getSource()).getScene().getWindow().hide();
 	}
+
+
+
+	@FXML
+	public void postuler(MouseEvent event){
+
+		OffreStage Os = offresTab.getSelectionModel().getSelectedItem();
+		intitule.setText(Os.getLibelleOffre());
+		domaine.setText(Os.getDomaineOffre());
+		debut.setText(Os.getDateDebutOffre());
+		duree.setText(Os.getDureeOffre());
+		description.setText(Os.getDescriptionOffre());
+
+
+	}
+	@FXML
+	public void postulerOffre(ActionEvent event){
+
+
+	}
+
+	@FXML
+	public void charger(ActionEvent event) {
+
+		FileChooser	fileChooser = new FileChooser();
+		fileChooser.getExtensionFilters().addAll(
+				new ExtensionFilter("Image Files", "*.pdf", "*.doc", "*.odt", "*.jpeg", "*.png", "*.doc"),
+				new ExtensionFilter("All Files", "*.*")
+				);		
+		
+		
+
+		buttonCV.setOnAction(e->{
+			if (idEtudiantTF==null){
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Information");
+				alert.setHeaderText(null);
+				alert.setContentText("Insérer d'abord votre identifiant!");
+				alert.showAndWait();
+			}
+			
+			
+
+			fileCV = fileChooser.showOpenDialog(null);
+			if (fileCV != null){
+				pathCV.setText(fileCV.getAbsolutePath());
+
+			}
+		});
+
+		buttonLDM.setOnAction(e->{
+
+			System.out.println("dfghjkljhgfdsqdfghjkljhgfd");
+			fileLDM = fileChooser.showOpenDialog(null);
+			if (fileLDM != null){
+				pathLDM.setText(fileLDM.getAbsolutePath());
+
+			}
+		});
+
+		
+//		
+		OffreStage Os = offresTab.getSelectionModel().getSelectedItem();
+		int idoff= Os.getIdOffre();
+		int identr= Os.getEntreprise_id_Entreprise();
+		Integer idEt= Integer.valueOf(idEtudiantTF.getText());
+
+		
+	//	int idetud = Integer.parseInt(idEt); 
+
+		buttonPostuler.setOnAction(e->{
+
+		try {
+		String sql = "INSERT into Candidatures (OffreStage_idOffre, Etudiant_idEtudiant, "
+		+ "Offres_Entreprise_idEntreprise,CV,LM) VALUE (?,?,?,?,?);";
+
+		java.sql.PreparedStatement ps=connection.prepareStatement(sql);
+
+		ps.setInt(1, idoff);
+		ps.setInt(2, idEt);
+		ps.setInt(3, identr);
+
+		cv = new FileInputStream(fileCV);
+		lm = new FileInputStream(fileLDM);
+
+	//	ps.setBinaryStream(4, cv, file.length());
+		
+	
+		byte[] pdfDataCV = new byte[(int) fileCV.length()];
+		DataInputStream disCV = new DataInputStream(new FileInputStream(fileCV));
+		disCV.readFully(pdfDataCV);
+		disCV.close();
+		ps.setBytes(4, pdfDataCV);
+		
+		byte[] pdfDataLDM = new byte[(int) fileLDM.length()];
+		DataInputStream disLDM = new DataInputStream(new FileInputStream(fileLDM));
+		disLDM.readFully(pdfDataLDM);
+		disLDM.close();
+		ps.setBytes(5, pdfDataLDM);
+
+
+	//	ps.setBinaryStream(5, lm, file.length());
+
+		ps.executeUpdate();
+		ps.close();
+
+		} catch (Exception e1) {
+		e1.printStackTrace();
+		}
+
+		//Pop-up
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information");
+		alert.setHeaderText(null);
+		alert.setContentText("Succée !");
+		alert.showAndWait();
+
+
+
+		});
+
+	}
+
+
+
 
 }
 

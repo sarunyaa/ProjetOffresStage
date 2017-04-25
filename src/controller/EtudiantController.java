@@ -18,6 +18,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -28,12 +30,13 @@ import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 import model.Etudiant;
 import model.Utilisateur;
+import pattern.EmailValide;
 
 
 public class EtudiantController implements Initializable {
 
 	Connection connection = Connect.ConnectDB() ;
-
+	public String idd;
 
 	@FXML
 	private TextField textNom;
@@ -60,6 +63,25 @@ public class EtudiantController implements Initializable {
 	@FXML
 	private Hyperlink retourLink;
 
+
+	@FXML
+	private TextField fieldNom;
+
+	@FXML
+	private TextField fieldPrenom;
+
+	private static String login;
+
+
+	public static String getLogin() {
+		return login;
+	}
+
+
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
 
 	@FXML
@@ -100,6 +122,9 @@ public class EtudiantController implements Initializable {
 		((Node) event.getSource()).getScene().getWindow().hide();
 
 	}
+
+
+
 	//Initilisation des choix
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -108,9 +133,6 @@ public class EtudiantController implements Initializable {
 
 	}
 
-
-	//final DatePicker datePicker = new DatePicker();
-	
 	@FXML
 	LocalDate date(ActionEvent event) {
 
@@ -118,10 +140,6 @@ public class EtudiantController implements Initializable {
 		System.out.println(date);
 		return date;
 	}
-
-
-
-
 
 
 	@FXML
@@ -132,25 +150,66 @@ public class EtudiantController implements Initializable {
 		//recupération des données entrées par l'utilisateur 
 		String nom=textNom.getText();
 		String prenom=textPrenom.getText();
-		//		java.util.Date dateDeNaissance = 
-		//				java.util.Date.from(textDdn.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-		//		java.sql.Date sqlDate = new java.sql.Date(dateDeNaissance.getTime());
-		//pst.setDate(5, sqlDate);
-		LocalDate dateDeNaissance=textDdn.getValue();
 		String niveauEtude=choixNiveau.getValue().toString().trim();
 		String adresseMail=textMail.getText();
-		String login=textLogin.getText();
+		login=textLogin.getText();
 		String motdepasse=textMDP.getText();
+		Date dateDeNaissance= java.sql.Date.valueOf(date(event));
 
-		Etudiant et = new Etudiant(nom, prenom, null, niveauEtude, adresseMail);
-		Utilisateur u = new Utilisateur(login,motdepasse);
-		EtudiantDao dao = new EtudiantDao();
-		dao.ajouter(u, et);
+		EmailValide validator = new EmailValide();
+		boolean s = (validator.validate(adresseMail));
 
-		System.out.println(nom + " ajouté dans la base, sous le login de " + login);
+		if (s== false){
+			//Pop-up
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Email invalide !");
+			alert.showAndWait();
+		}else{
+			if(UtilisateurConnexion.verifLogin(login)){
+				Etudiant et = new Etudiant(nom, prenom, dateDeNaissance, niveauEtude, adresseMail);
+				Utilisateur u = new Utilisateur(login,motdepasse);
+				EtudiantDao dao = new EtudiantDao();
+				dao.ajouter(u, et);
 
+				System.out.println(nom + " ajouté dans la base, sous le login de " + login);
+
+
+				//Pop-up
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information");
+				alert.setHeaderText(null);
+				alert.setContentText("Bienvenue !");
+				alert.showAndWait();	
+
+
+				Stage primaryStage = new Stage();
+				try {
+
+					// Localisation du fichier FXML.
+					final URL url = getClass().getClassLoader().getResource("view/ProfilEtudiant.fxml");
+
+					// Création du loader.
+					final FXMLLoader fxmlLoader = new FXMLLoader(url);
+
+					// Chargement du FXML.
+					final AnchorPane root = (AnchorPane) fxmlLoader.load();
+
+					// Création de la scène.
+					final Scene scene = new Scene(root);
+					primaryStage .setScene(scene);
+				} catch (IOException ex) {
+					System.err.println("Erreur au chargement: " + ex);
+				}
+				primaryStage.setTitle("Mon profil");
+				primaryStage.show();
+				primaryStage.setResizable(false);
+				((Node) event.getSource()).getScene().getWindow().hide();
+
+
+			}}
 	}
-
 }
 
 

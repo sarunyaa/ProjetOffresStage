@@ -3,7 +3,9 @@ package controller;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
@@ -12,7 +14,8 @@ import javafx.stage.FileChooser;
 public class Connect {
 
 	Connection conn=null;
-	
+	Statement state;
+
 	String filename= null;
 	public static String path;
 
@@ -27,6 +30,37 @@ public class Connect {
 			return null;
 		}
 	}
+	
+	//méthode prédefini pour executeQuery (pr select, delete)
+		public ResultSet excuteQuery(String requette){
+			ResultSet resultat;
+			try{
+				state= (Statement) conn.createStatement();
+				resultat= state.executeQuery(requette);
+			}catch(SQLException ex){
+				System.out.println("Exception at executeQuery:Connect"+ex.getLocalizedMessage());
+				return null;
+			}finally{
+
+			}
+			return resultat;
+		}
+		
+		public boolean excute(String requette2){
+			ResultSet resultat;
+			try{
+				state= (Statement) conn.createStatement();
+				state.execute(requette2);
+				return true;
+			}catch(SQLException ex){
+
+				JOptionPane.showMessageDialog(null, "error:"+ex.getMessage(), "Error Occured", JOptionPane.ERROR_MESSAGE);
+				System.out.println("Exception at execute:Connect"+ex.getLocalizedMessage());
+				return false;
+			}finally{
+
+			}
+		}
 	
 	public void filen() {
 		try {

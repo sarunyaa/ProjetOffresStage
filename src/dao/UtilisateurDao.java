@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 
 import com.mysql.jdbc.PreparedStatement;
@@ -8,11 +9,34 @@ import controller.Connect;
 
 public class UtilisateurDao implements UtilisateurInterface{
 	
-	java.sql.Connection connection;
+	static java.sql.Connection connection;
 
 	final String findU ="SELECT motdepasse FROM `Utilisateur` WHERE `login`= ?";
 	final String findType ="SELECT type FROM `Utilisateur` WHERE `type`= ?";
 	
+    public static int getiD(String requet){
+    	int rep=0;
+    	Connection conn=Connect.ConnectDB();
+		
+		try {
+		PreparedStatement ps=(PreparedStatement) conn.prepareStatement(requet);
+		
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			rep=rs.getInt(1);
+				
+				
+			
+		}ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return rep;
+	}
+    
+  
 	
 	@Override
 	public String choixType(String type) {

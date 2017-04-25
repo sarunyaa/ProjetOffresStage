@@ -53,8 +53,21 @@ public class ControlUtilisateur  {
     @FXML
     private RadioButton radioEntreprise;
 
+    private String login;
 
-    @FXML
+    public String getLogin() {
+		return login;
+	}
+
+
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+
+
+	@FXML
     void retourAccueil(ActionEvent event) {
     	
     	Stage primaryStage = new Stage();
@@ -95,7 +108,7 @@ public class ControlUtilisateur  {
 			public void handle(ActionEvent event) {
 				if(event.getSource()==buttonConnex){
 					System.out.println("bouton connexion cliqué");	
-					String login=textLogin.getText();
+					 login=textLogin.getText();
 					String motdepasse=textMDP.getText();	
 
 					PreparedStatement state =null;

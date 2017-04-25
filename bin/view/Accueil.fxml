@@ -36,19 +36,19 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="buttonConnexion" mnemonicParsing="false" onAction="#clicConnexion" prefHeight="55.0" prefWidth="252.0" text="ButtonConnexion" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Button fx:id="buttonInscription" mnemonicParsing="false" onAction="#clicInscription" prefHeight="56.0" prefWidth="249.0" text="ButtonInscription" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                  <Button fx:id="buttonConnexion" mnemonicParsing="false" onAction="#clicConnexion" prefHeight="55.0" prefWidth="252.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Button fx:id="buttonInscription" mnemonicParsing="false" onAction="#clicInscription" prefHeight="56.0" prefWidth="249.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                   <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
                     <buttons>
-                      <Button mnemonicParsing="false" text="Accueil" />
-                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="98.0" text="A propos" />
+                      <Button mnemonicParsing="false" style="-fx-background-color: transparent;" />
+                        <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#clicAbout" prefHeight="27.0" prefWidth="98.0" style="-fx-background-color: transparent;" />
                         <Button mnemonicParsing="false" text="Button" visible="false" />
                     </buttons>
                   </ButtonBar>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="3">
                     <buttons>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="121.0" text="Contactez nous" />
-                      <Button minWidth="63.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="84.0" text="Aide" />
+                        <Button fx:id="contactButton" alignment="CENTER" mnemonicParsing="false" onAction="#clicContact" prefHeight="27.0" prefWidth="121.0" style="-fx-background-color: transparent;" />
+                      <Button fx:id="helpButton" minWidth="63.0" mnemonicParsing="false" onAction="#clicHelp" prefHeight="27.0" prefWidth="84.0" style="-fx-background-color: transparent;" />
                     </buttons>
                   </ButtonBar>
                </children>

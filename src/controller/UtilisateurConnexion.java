@@ -3,6 +3,8 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 import dao.UtilisateurDao;
@@ -16,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -32,9 +35,10 @@ public class UtilisateurConnexion implements  Initializable {
 
 	@FXML
 	private TextField textMDP;
-
+	
+	
 	@FXML
-	private TextField textLogin;
+	private PasswordField textLogin;
 	
 	final ToggleGroup group = new ToggleGroup();
 
@@ -49,6 +53,7 @@ public class UtilisateurConnexion implements  Initializable {
 
 	@FXML
 	private Hyperlink retourLink;
+	private static String login=null; 
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -68,7 +73,27 @@ public class UtilisateurConnexion implements  Initializable {
 		
 	}
     
-    
+	public static boolean verifLogin(String a){
+		Connection conn=Connect.ConnectDB();
+		boolean rep=true;
+		try {
+		PreparedStatement ps=conn.prepareStatement("SELECT `login` FROM `Utilisateur`");
+		
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			if(rs.getString(1).equals(a)){
+				
+				return false;
+				
+			};
+		}ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return rep;
+	}
+	
 
 	@FXML
 	void retourAccueil(ActionEvent event) {
@@ -125,7 +150,7 @@ public class UtilisateurConnexion implements  Initializable {
 		Stage primaryStage = new Stage();
 		try {
 			// Localisation du fichier FXML.
-			final URL url = getClass().getClassLoader().getResource("view/Inscription.fxml");
+			final URL url = getClass().getClassLoader().getResource("view/Entreprise.fxml");
 
 			// Création du loader.
 			final FXMLLoader fxmlLoader = new FXMLLoader(url);
@@ -159,7 +184,7 @@ public class UtilisateurConnexion implements  Initializable {
 	@FXML
 	void sauthentifier(ActionEvent event) {
 
-		String login=textLogin.getText();
+		login=textLogin.getText();
 		String motdepasse=textMDP.getText();	
 
 		String type = null; //recupère le type selectionné par l'utilisateur
@@ -173,12 +198,8 @@ public class UtilisateurConnexion implements  Initializable {
 		
 		if(ut.trouver(login, motdepasse) && ut.choixType(type).equals("Etudiant")){
 			ouvreProfilEtu(event);
-
-
 		}
 		
-
-
 		else if (ut.trouver(login, motdepasse) && ut.choixType(type).equals("Entreprise")){
 			ouvreProfilEnt(event);
 
@@ -193,6 +214,18 @@ public class UtilisateurConnexion implements  Initializable {
 		}
 
 
+	}
+
+
+
+	public static String getLogin() {
+		return login;
+	}
+
+
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	

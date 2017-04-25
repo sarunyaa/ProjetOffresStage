@@ -1,25 +1,19 @@
 package controller;
 
-import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
-
-import com.mysql.jdbc.Statement;
-
-import application.Main;
-import dao.EtudiantDao;
-import javafx.embed.swing.SwingFXUtils;
+import dao.UtilisateurDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,16 +22,15 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import model.Etudiant;
-import model.Utilisateur;
 
 public class ControllerProfileEtudiant implements Initializable {
 
@@ -61,7 +54,7 @@ public class ControllerProfileEtudiant implements Initializable {
 
 	@FXML
 	private TextField textMail;
-	
+
 	@FXML
 	private TextField id;
 
@@ -81,41 +74,73 @@ public class ControllerProfileEtudiant implements Initializable {
 	private Button buttonMaj;
 
 	@FXML
-	private ListView path;
+	private TextArea path;
 
 	//Etudiant etu;
+	private String login;
+	private File file;
+	private Image image;
+	private FileInputStream fis;
 
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		login=UtilisateurConnexion.getLogin();
+		if(login==null){
+			login=EtudiantController.getLogin();
+
+		};
+		
+		int idd=UtilisateurDao.getiD("SELECT id_Utilisateur FROM Utilisateur WHERE login='"+login+"'");
 		Connection connection = Connect.ConnectDB() ;
 
-
 		try {
-			String sql = "SELECT * FROM Etudiant";
-		//	String sql = "SELECT * FROM Etudiant WHERE nom =" + nom + ", prenom =?" ;
+			String sql = "SELECT * FROM Etudiant WHERE idEtudiant='"+idd+"'";
+			//	String sql = "SELECT * FROM Etudiant WHERE nom =" + nom + ", prenom =?" ;
 
+		//	String dbName ="test";
 
 
 			//Etudiant e = new Etudiant(nom, prenom, login, motdepasse);
 			PreparedStatement ps=connection.prepareStatement(sql);
 			//System.out.println("teest");
 			ResultSet rs=ps.executeQuery();
-			rs.last();
+			rs.next();
 			int idn = rs.getInt("idEtudiant");
 			String nom = rs.getString("nom");
 			String prenom = rs.getString("prenom");
-			//	Date Ddn = rs.getDate("dateDeNaissance");
 			String adresseMail= rs.getString("adresseMail");
+			Date Ddn = rs.getDate("dateDeNaissance");
 
+
+
+			//	imageP = new ImageView();
+			if(rs.getString("photoProfil") != null){
+				
+				
+				InputStream input = new ByteArrayInputStream(rs.getBytes("photoProfil"));
+				Image imge = new Image(input);
+				imageP.setImage(imge);
+				
+				
+			}
+			
+			
+//					if(rs.getString("CV") != null){
+//						InputStream input = new ByteArrayInputStream(rs.getBytes("photoProfil"));
+//						File imge = new File(input);
+			//PDDocument doc = PDDocument.load(new File(filename));
+			//PDFRenderer renderer = new PDFRenderer(doc);
+			
 
 			textNom.setText(nom);
 			textPrenom.setText(prenom);
-			//	textDdn.setText(Ddn));
+			textDdn.setText(Ddn.toString());
 			textMail.setText(adresseMail);
 			String a = String.valueOf(idn);
-			id.setText(a);
+			id.setText(a); //attten 
+			//	imageP.setImage();
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -155,84 +180,66 @@ public class ControllerProfileEtudiant implements Initializable {
 	}
 
 
+
 	@FXML
-	public void changerPhotoProfilEtudiant(ActionEvent event) {
-		FileChooser fileChooser = new FileChooser();
-
-		//Set extension filter
-		FileChooser.ExtensionFilter extFilter = 
-				new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG", "jpg files (*.jpg)", "*.jpg",
-						"PNG files (*.PNG)", "*.PNG","png files (*.png)", "*.png",
-						"JPEG files (*.JPEG)", "*.JPEG","jpeg files (*.jpeg)", "*.jpeg");
-
-		fileChooser.getExtensionFilters()
-		.addAll(extFilter);
+	public void charger(ActionEvent event) {
 
 
-		//Show open file dialog
-		File file = fileChooser.showOpenDialog(null);
+		FileChooser	fileChooser = new FileChooser();
+		fileChooser.getExtensionFilters().addAll(
+				new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"),
+				new ExtensionFilter("All Files", "*.*")
+				);		
 
-		try {
-			BufferedImage bufferedImage = ImageIO.read(file);
-			Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-			imageP.setImage(image);
-		} catch (IOException ex) {
-			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-		}
 
-		if (file != null){
-			path.getItems().add(file.getAbsolutePath());
-			System.out.println("browse");
-		}
-		else{
-			System.out.println("File isn't valid");
-		}
+		photoBrowse.setOnAction(e->{
+			file = fileChooser.showOpenDialog(null);
+			if (file != null){
+				path.setText(file.getAbsolutePath());
+
+				image = new Image(file.toURI().toString());
+
+
+				imageP.setFitWidth(100);
+				imageP.setImage(image);
+			}
+		});
+
+		buttonMaj.setOnAction(e->{
+			try {
+				String sql = "UPDATE Etudiant SET nom= ?, prenom=?, photoProfil=? WHERE idEtudiant = ?";
+
+				PreparedStatement ps=connection.prepareStatement(sql);
+				//System.out.println("teest");
+
+				ps.setString(1, textNom.getText());
+				ps.setString(2, textPrenom.getText());
+				System.out.println(textNom.getText());
+
+				fis = new FileInputStream(file);
+				ps.setBinaryStream(3, fis, file.length());
+				ps.setString(4, id.getText());
+
+				ps.executeUpdate();
+				ps.close();
+
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+
+			//Pop-up
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information");
+			alert.setHeaderText(null);
+			alert.setContentText("Données mises à jour !");
+			alert.showAndWait();
+
+		});		
 
 	}
 
-
 	@FXML
-	void maj(ActionEvent event) throws ClassNotFoundException {
-
-		Connection connection = Connect.ConnectDB() ;
-
-
-		try {
-			String sql = "UPDATE Etudiant SET nom= ? WHERE idEtudiant = ?";
-
-			
-			
-			System.out.println("zertykezaertyhurezazertyurezer");
-			PreparedStatement ps=connection.prepareStatement(sql);
-			//System.out.println("teest");
-
-			ps.setString(1, textNom.getText());
-			ps.setString(2, id.getText());
-
-			//ps.setString(3, textPrenom.getText());
-
-			//Etudiant e = new Etudiant(nom, prenom, login, motdepasse);
-			//System.out.println("teest");
-			ps.executeUpdate();
-			ps.close();
-			
-			
-//			rs.updateString("nom", textNom.getText());
-//			rs.updateString("prenom", textPrenom.getText());
-//			rs.updateString("adresseMail", textAdresse.getText());
-
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-
-		//Pop-up
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Information");
-		alert.setHeaderText(null);
-		alert.setContentText("Données mises à jour !");
-		alert.showAndWait();	
+	void maj(ActionEvent event) throws ClassNotFoundException, SQLException {
 
 
 
